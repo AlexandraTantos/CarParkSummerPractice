@@ -1,0 +1,41 @@
+.filtersPanel {
+    background-color: #ffffff;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.filtersPanel input[type="text"],
+.filtersPanel input[type="number"] {
+    flex: 1 1 200px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.filtersPanel label.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.filtersPanel button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 6px;
+    flex: 1 1 100px;
+}
+
+.filtersPanel button:hover {
+    background-color: #b02a37;
+}
