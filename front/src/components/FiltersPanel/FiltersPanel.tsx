@@ -45,7 +45,7 @@ export default function FiltersPanel() {
     updateFilter("fuelTypes", newFuelTypes);
   };
   return (
-    <Box className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto space-y-4">
+    <Box className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto space-y-4 sticky">
       <Typography variant="h6" gutterBottom className="font-bold text-gray-800">
         Filters
       </Typography>

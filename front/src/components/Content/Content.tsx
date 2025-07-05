@@ -90,8 +90,8 @@ export default function Content() {
   return (
     <div>
       <NavBar />
-      <div className="flex min-h-screen">
-        <aside className="hidden sm:block w-88 p-4 bg-gray-50 border-r border-gray-200">
+      <div className="flex flex-col sm:flex-col md:flex-row min-h-screen">
+        <aside className="block md:sticky sm:top-0 w-full sm:w-110 p-4 bg-gray-50 border-r border-gray-200 h-auto sm:h-screen overflow-auto">
           <FiltersPanel />
         </aside>
         <div className="w-full">
