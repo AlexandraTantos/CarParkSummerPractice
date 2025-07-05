@@ -26,5 +26,11 @@ export function useCarsList() {
   useEffect(() => {
     getCarList();
   }, []);
-  return { carsList, isError, isLoading };
+
+  function getManufacturers(): string[] {
+    const manufacturersSet = new Set(carsList.map((car) => car.manufacturer));
+    return Array.from(manufacturersSet).sort();
+  }
+
+  return { carsList, isError, isLoading, getManufacturers };
 }
