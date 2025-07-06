@@ -1,4 +1,4 @@
-import { Car } from "../../models";
+import { Car } from "../models";
 import {
   Button,
   Dialog,
@@ -9,9 +9,7 @@ import {
   Divider,
   Box,
   ListItem,
-  CardMedia,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
 
 interface ItemDetailsDialogProps {
   car: Car;

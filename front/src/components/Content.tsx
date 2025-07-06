@@ -1,15 +1,18 @@
-import { useCarsList } from "../../hooks/useCarsList";
-import { useFavorites } from "../../hooks/useFavorites";
-import { useFilters } from "../../hooks/useFilters";
-import CarItem from "../CarItem/CarItem";
-import FiltersPanel from "../FiltersPanel/FiltersPanel";
-import NavBar from "../NavigationBar/NavBar";
-import SearchInput from "../SearchInput/SearchInput";
+import { useCarsList } from "../hooks/useCarsList";
+import { useFavorites } from "../hooks/useFavorites";
+import { useFilters } from "../hooks/useFilters";
+import CarItem from "./CarItem";
+import FiltersPanel from "./FiltersPanel";
+import NavBar from "./NavBar";
+import SearchInput from "./SearchInput";
 import { useState } from "react";
+import SortDropdown from "./SortDropdown";
 
 export default function Content() {
   const { carsList, isError, isLoading } = useCarsList();
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("price-asc");
+
   const { filters } = useFilters();
   const { favorites } = useFavorites();
 
@@ -74,6 +77,25 @@ export default function Content() {
 
     return true;
   });
+  filteredCars = filteredCars.sort((a, b) => {
+    const priceA = parsePrice(a.price);
+    const priceB = parsePrice(b.price);
+    const yearA = Number(a.constructionYear);
+    const yearB = Number(b.constructionYear);
+
+    switch (sortOption) {
+      case "price-asc":
+        return priceA - priceB;
+      case "price-desc":
+        return priceB - priceA;
+      case "year-asc":
+        return yearA - yearB;
+      case "year-desc":
+        return yearB - yearA;
+      default:
+        return 0;
+    }
+  });
 
   if (searchQuery !== "") {
     const searchWords = searchQuery.toLowerCase().split(" ").filter(Boolean);
@@ -98,7 +120,11 @@ export default function Content() {
           <FiltersPanel />
         </aside>
         <div className="w-full">
-          <SearchInput onSearch={setSearchQuery} />
+          <div className="flex flex-col sm:flex-row justify-between gap-6 ">
+            <SearchInput onSearch={setSearchQuery} />
+            <SortDropdown onSortChange={setSortOption} />
+          </div>
+
           <main className=" p-6 bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCars.length === 0 ? (
               <div className="text-center text-gray-500 text-xl mt-10">

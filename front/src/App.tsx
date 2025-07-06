@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Content from "./components/Content/Content";
+import Content from "./components/Content";
 import { FavoriteProvider } from "./contexts/FavoritesContext";
 import { FiltersProvider } from "./contexts/FiltersContext";
 import Cart from "./components/Cart";

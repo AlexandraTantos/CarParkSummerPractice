@@ -1,7 +1,5 @@
-import { Car } from "../../models";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useFavorites } from "../../hooks/useFavorites";
 import {
   Box,
   Button,
@@ -13,7 +11,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import ItemDetailsDialog from "../ItemDetails/ItemDetailsDialog";
+import ItemDetailsDialog from "./ItemDetailsDialog";
+import { Car } from "../models";
+import { useFavorites } from "../hooks/useFavorites";
 
 type Props = {
   car: Car;

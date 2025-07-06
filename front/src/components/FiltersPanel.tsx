@@ -17,14 +17,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { useFilters } from "../../hooks/useFilters";
-import { useCarsList } from "../../hooks/useCarsList";
+import { useCarsList } from "../hooks/useCarsList";
+import { useFilters } from "../hooks/useFilters";
 
 export default function FiltersPanel() {
-  const [openYear, setOpenYear] = useState(false);
-  const [openPrice, setOpenPrice] = useState(false);
-  const [openMileage, setOpenMileage] = useState(false);
-  const [openFuelType, setOpenFuelType] = useState(false);
+  const [openYear, setOpenYear] = useState(true);
+  const [openPrice, setOpenPrice] = useState(true);
+  const [openMileage, setOpenMileage] = useState(true);
+  const [openFuelType, setOpenFuelType] = useState(true);
   const { filters, updateFilter, resetFilters } = useFilters();
 
   const { getManufacturers } = useCarsList();
@@ -45,7 +45,7 @@ export default function FiltersPanel() {
     updateFilter("fuelTypes", newFuelTypes);
   };
   return (
-    <Box className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto space-y-4 sticky">
+    <Box className="px-6 py-2 bg-white rounded-lg shadow-md max-w-md mx-auto space-y-4 sticky">
       <Typography variant="h6" gutterBottom className="font-bold text-gray-800">
         Filters
       </Typography>
@@ -127,8 +127,10 @@ export default function FiltersPanel() {
               variant="outlined"
               size="small"
               className="w-28"
+              inputProps={{ min: 0 }}
+              error={Number(filters.constructionYearMin) < 0}
             />
-            <Typography>to</Typography>
+            <Typography className="self-center">to</Typography>
             <TextField
               label="Max"
               type="number"
@@ -142,6 +144,8 @@ export default function FiltersPanel() {
               variant="outlined"
               size="small"
               className="w-28"
+              inputProps={{ min: 0 }}
+              error={Number(filters.constructionYearMax) < 0}
             />
           </Box>
         </Collapse>
@@ -182,8 +186,10 @@ export default function FiltersPanel() {
               variant="outlined"
               size="small"
               className="w-28"
+              inputProps={{ min: 0 }}
+              error={Number(filters.priceMin) < 0}
             />
-            <Typography>to</Typography>
+            <Typography className="self-center">to</Typography>
             <TextField
               label="Max"
               type="number"
@@ -197,6 +203,8 @@ export default function FiltersPanel() {
               variant="outlined"
               size="small"
               className="w-28"
+              inputProps={{ min: 0 }}
+              error={Number(filters.priceMax) < 0}
             />
           </Box>
         </Collapse>
@@ -237,8 +245,14 @@ export default function FiltersPanel() {
               variant="outlined"
               size="small"
               className="w-28"
+              inputProps={{ min: 0 }}
+              error={Number(filters.mileageMin) < 0}
+              helperText={
+                Number(filters.mileageMin) < 0 ? "Must be 0 or more" : ""
+              }
             />
-            <Typography>to</Typography>
+
+            <Typography className="self-center">to</Typography>
             <TextField
               label="Max"
               type="number"
@@ -252,6 +266,11 @@ export default function FiltersPanel() {
               variant="outlined"
               size="small"
               className="w-28"
+              inputProps={{ min: 0 }}
+              error={Number(filters.mileageMin) < 0}
+              helperText={
+                Number(filters.mileageMin) < 0 ? "Must be 0 or more" : ""
+              }
             />
           </Box>
         </Collapse>
