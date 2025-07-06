@@ -49,6 +49,21 @@ export default function FiltersPanel() {
       <Typography variant="h6" gutterBottom className="font-bold text-gray-800">
         Filters
       </Typography>
+      <Box className="flex items-center justify-between mb-0 mt-6">
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={filters.showFavoritesOnly}
+              onChange={(e) =>
+                updateFilter("showFavoritesOnly", e.target.checked)
+              }
+              color="primary"
+            />
+          }
+          label="Show Favorites"
+        />
+      </Box>
+
       <Box className="mb-4">
         <Typography
           variant="subtitle1"

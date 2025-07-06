@@ -3,7 +3,6 @@ import { useFavorites } from "../../hooks/useFavorites";
 import { useFilters } from "../../hooks/useFilters";
 import CarItem from "../CarItem/CarItem";
 import FiltersPanel from "../FiltersPanel/FiltersPanel";
-import "./Content.css";
 import NavBar from "../NavigationBar/NavBar";
 import SearchInput from "../SearchInput/SearchInput";
 import { useState } from "react";
@@ -69,6 +68,10 @@ export default function Content() {
     ) {
       return false;
     }
+    if (filters.showFavoritesOnly) {
+      return favorites.some((favorite) => favorite.vin === car.vin);
+    }
+
     return true;
   });
 

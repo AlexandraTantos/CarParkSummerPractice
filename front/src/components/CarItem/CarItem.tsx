@@ -1,21 +1,27 @@
-import { useState } from "react";
 import { Car } from "../../models";
-import "./CarItem.css";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavorites } from "../../hooks/useFavorites";
 import {
+  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import ItemDetailsDialog from "../ItemDetails/ItemDetailsDialog";
 
 type Props = {
   car: Car;
 };
 
 export default function CarItem({ car }: Props) {
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   return (
     <Card className="w-full shadow-lg rounded-full overflow-hidden  transition-shadow duration-300">
       <CardMedia
@@ -40,19 +46,28 @@ export default function CarItem({ car }: Props) {
         <Typography variant="subtitle1" className="text-indigo-600 font-bold">
           Price: {car.price} €
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          className="capitalize"
-        >
-          Read More
-        </Button>
+        <Box>
+          <IconButton onClick={() => toggleFavorite(car)} color="error">
+            {isFavorite(car) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </IconButton>
+
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className="capitalize"
+            onClick={() => setSelectedCar(car)}
+          >
+            Read More
+          </Button>
+          {selectedCar && (
+            <ItemDetailsDialog
+              car={selectedCar}
+              onClose={() => setSelectedCar(null)}
+            />
+          )}
+        </Box>
       </CardActions>
     </Card>
   );
 }
-
-//         <button className="button" onClick={() => toggleFavorite(car)}>
-//           {isFavorite(car) ? "Remove from favorites" : "Add to favorites"}
-//         </button>

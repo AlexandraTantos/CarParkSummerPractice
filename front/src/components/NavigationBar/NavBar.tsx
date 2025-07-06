@@ -39,9 +39,6 @@ export default function NavBar() {
             Products
           </button>
           <button className="hover:text-blue-600 hover:bg-gray-200 rounded-2xl py-1 px-2 transition cursor-pointer">
-            Favorites
-          </button>
-          <button className="hover:text-blue-600 hover:bg-gray-200 rounded-2xl py-1 px-2 transition cursor-pointer">
             Cart
           </button>
         </div>
