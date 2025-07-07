@@ -40,6 +40,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   function clearCart() {
     setCartItems([]);
   }
+
   useEffect(() => {
     localStorage.setItem("carpark_cart", JSON.stringify(cartItems));
   }, [cartItems]);

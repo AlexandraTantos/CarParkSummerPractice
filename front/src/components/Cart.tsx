@@ -14,14 +14,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import NavBar from "./NavBar";
 import { useCart } from "../hooks/useCart";
 
-export default function ItemDetails() {
+export default function Cart() {
   const { cartItems, removeFromCart, clearCart } = useCart();
   const [activeStep, setActiveStep] = useState(0);
 
   const steps = ["Shopping Cart", "Insurance", "Account", "Order Details"];
 
   const totalPrice = cartItems.reduce(
-    (acc, item) => acc + Number(item.price) * item.quantity,
+    (sum, item) => sum + Number(item.price) * item.quantity,
     0
   );
 
@@ -29,7 +29,7 @@ export default function ItemDetails() {
     <div>
       <NavBar />
 
-      <Box sx={{ maxWidth: 800, mx: "auto", p: 3 }}>
+      <Box sx={{ maxWidth: 900, mx: "auto", p: 3 }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
             <Step key={label}>
@@ -53,12 +53,12 @@ export default function ItemDetails() {
                 {cartItems.map((item) => (
                   <Card
                     key={item.vin}
-                    className="flex gap-4 p-4 mb-3 items-center"
+                    className="flex flex-col sm:flex-row gap-4 p-4 mb-3 items-center"
                   >
                     <img
                       src={`http://localhost:3019/img/${item.image}`}
                       alt={item.model}
-                      className="h-40 object-cover rounded-lg flex-grow-[2] min-w-[200px] max-w-[320px]"
+                      className="h-50 object-cover rounded-lg flex-grow-[2] min-w-[200px] max-w-[320px]"
                     />
                     <Box className="flex-grow">
                       <Typography variant="subtitle1" fontWeight={600}>
@@ -85,7 +85,7 @@ export default function ItemDetails() {
                       onClick={() => removeFromCart(item.vin)}
                       aria-label="remove"
                       color="error"
-                      className="flex-shrink-0"
+                      className="flex "
                     >
                       <DeleteIcon />
                     </IconButton>

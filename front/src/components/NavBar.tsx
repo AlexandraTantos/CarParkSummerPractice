@@ -31,12 +31,12 @@ export default function NavBar() {
       className="bg-white mx-auto px-4 sm:px-6 lg:px-8 relative"
     >
       <Toolbar className="flex justify-between items-center px-4">
-        <Typography
-          variant="h6"
+        <Link
+          to="/"
           className="text-xl sm:text-2xl font-bold text-blue-600 hover:text-blue-500 transition-colors"
         >
           CarPark
-        </Typography>
+        </Link>
 
         <div className="hidden md:flex space-x-6 items-center text-gray-700">
           <Link
