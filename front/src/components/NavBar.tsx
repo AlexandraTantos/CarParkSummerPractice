@@ -15,9 +15,13 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 
 export default function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { cartItems } = useCart();
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <AppBar
@@ -35,19 +39,21 @@ export default function NavBar() {
         </Typography>
 
         <div className="hidden md:flex space-x-6 items-center text-gray-700">
-          <button className="hover:text-blue-600 hover:bg-gray-200 rounded-2xl py-1 px-2 transition cursor-pointer">
+          <Link
+            to="/"
+            className="hover:text-blue-600 hover:bg-gray-200 rounded-2xl py-1 px-2 transition cursor-pointer"
+          >
             Products
-          </button>
-          <button className="hover:text-blue-600 hover:bg-gray-200 rounded-2xl py-1 px-2 transition cursor-pointer">
-            Cart
-          </button>
+          </Link>
         </div>
 
         <div className="flex items-center space-x-2">
           <IconButton>
-            <Badge badgeContent={2} color="primary">
-              <ShoppingCart />
-            </Badge>
+            <Link to="/cart">
+              <Badge badgeContent={totalItems} color="primary">
+                <ShoppingCart />
+              </Badge>
+            </Link>
           </IconButton>
           <IconButton>
             <Person />

@@ -1,3 +1,145 @@
+import { useState } from "react";
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+  Box,
+  Card,
+  Typography,
+  IconButton,
+  Divider,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import NavBar from "./NavBar";
+import { useCart } from "../hooks/useCart";
+
 export default function ItemDetails() {
-  return <div></div>;
+  const { cartItems, removeFromCart, clearCart } = useCart();
+  const [activeStep, setActiveStep] = useState(0);
+
+  const steps = ["Shopping Cart", "Insurance", "Account", "Order Details"];
+
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + Number(item.price) * item.quantity,
+    0
+  );
+
+  return (
+    <div>
+      <NavBar />
+
+      <Box sx={{ maxWidth: 800, mx: "auto", p: 3 }}>
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+
+        {activeStep === 0 && (
+          <>
+            {cartItems.length === 0 ? (
+              <Typography
+                variant="h6"
+                align="center"
+                sx={{ mt: 8, color: "gray" }}
+              >
+                Cart is empty
+              </Typography>
+            ) : (
+              <Box sx={{ mt: 4 }}>
+                {cartItems.map((item) => (
+                  <Card
+                    key={item.vin}
+                    className="flex gap-4 p-4 mb-3 items-center"
+                  >
+                    <img
+                      src={`http://localhost:3019/img/${item.image}`}
+                      alt={item.model}
+                      className="h-40 object-cover rounded-lg flex-grow-[2] min-w-[200px] max-w-[320px]"
+                    />
+                    <Box className="flex-grow">
+                      <Typography variant="subtitle1" fontWeight={600}>
+                        {item.manufacturer} {item.model} (
+                        {item.constructionYear})
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.power} • {item.gearbox}
+                      </Typography>
+                      <Typography variant="body2" mt={1}>
+                        Price: <strong>{item.price} €</strong> x {item.quantity}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="primary"
+                        fontWeight={600}
+                        mt={1}
+                      >
+                        Total: {(Number(item.price) * item.quantity).toFixed(2)}{" "}
+                        €
+                      </Typography>
+                    </Box>
+                    <IconButton
+                      onClick={() => removeFromCart(item.vin)}
+                      aria-label="remove"
+                      color="error"
+                      className="flex-shrink-0"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Card>
+                ))}
+
+                <Divider />
+
+                <Box sx={{ textAlign: "right", mt: 4 }}>
+                  <Typography variant="h6" fontWeight={600}>
+                    Grand Total:{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: "blue", fontWeight: "bold" }}
+                    >
+                      {totalPrice.toFixed(2)} €
+                    </Box>
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={clearCart}
+                    sx={{ mt: 1, textTransform: "none" }}
+                  >
+                    Clear Cart
+                  </Button>
+                </Box>
+              </Box>
+            )}
+          </>
+        )}
+
+        {activeStep !== 0 && (
+          <Box sx={{ mt: 6 }}>
+            <Typography variant="h5" align="center">
+              Will be implemented
+            </Typography>
+          </Box>
+        )}
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
+          <Button
+            disabled={activeStep === 0}
+            onClick={() => setActiveStep((prev) => prev - 1)}
+          >
+            Back
+          </Button>
+          <Button
+            disabled={activeStep === steps.length - 1}
+            onClick={() => setActiveStep((prev) => prev + 1)}
+          >
+            Next
+          </Button>
+        </Box>
+      </Box>
+    </div>
+  );
 }
