@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import SearchInput from "./SearchInput";
 import { useState } from "react";
 import SortDropdown from "./SortDropdown";
+import parsePrice from "./shared/parsePrice";
 
 export default function Content() {
   const { carsList, isError, isLoading } = useCarsList();
@@ -15,11 +16,6 @@ export default function Content() {
 
   const { filters } = useFilters();
   const { favorites } = useFavorites();
-
-  function parsePrice(value: string | number): number {
-    if (typeof value === "number") return value;
-    return Number(value.replace(/\./g, "").replace(/\s/g, ""));
-  }
 
   function parseMileage(value: string | number): number {
     if (typeof value === "number") return value;

@@ -26,9 +26,18 @@ export default function ItemDetailsDialog({
 
   return (
     <Dialog open={true} onClose={onClose} maxWidth="md" fullWidth>
-      <DialogTitle>
+      <DialogTitle sx={{ mb: 0, pb: 0 }} color="primary">
         {car.manufacturer} {car.model} ({car.constructionYear})
       </DialogTitle>
+
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        className="px-6"
+        sx={{ mt: 0.5 }}
+      >
+        {car.power} • {car.mileage} • {car.gearbox}
+      </Typography>
 
       <DialogContent dividers>
         <img
@@ -36,6 +45,8 @@ export default function ItemDetailsDialog({
           alt={`${car.manufacturer} ${car.model}`}
           className="object-cover place-self-center w-160 max-w-full h-90 p-4 rounded-3xl"
         />
+
+        <Divider sx={{ my: 2 }} />
         <Box>
           <Typography variant="subtitle1">
             <strong>Equipments:</strong>
@@ -51,6 +62,7 @@ export default function ItemDetailsDialog({
           <Typography variant="body1">
             <strong>Description:</strong> {car.description}
           </Typography>
+          <Divider sx={{ my: 2 }} />
         </Box>
       </DialogContent>
 

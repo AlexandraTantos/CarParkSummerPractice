@@ -13,6 +13,15 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import NavBar from "./NavBar";
 import { useCart } from "../hooks/useCart";
+import parsePrice from "./shared/parsePrice";
+
+function formatPrice(num: number) {
+  if (num % 1 === 0) {
+    return num.toString();
+  } else {
+    return num.toFixed(2).replace(".", ",");
+  }
+}
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart } = useCart();
@@ -20,10 +29,10 @@ export default function Cart() {
 
   const steps = ["Shopping Cart", "Insurance", "Account", "Order Details"];
 
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + Number(item.price) * item.quantity,
-    0
-  );
+  const totalPrice = cartItems.reduce((sum, item) => {
+    const parsedPrice = parsePrice(item.price);
+    return sum + parsedPrice * item.quantity;
+  }, 0);
 
   return (
     <div>
@@ -77,8 +86,8 @@ export default function Cart() {
                         fontWeight={600}
                         mt={1}
                       >
-                        Total: {(Number(item.price) * item.quantity).toFixed(2)}{" "}
-                        €
+                        Total: Total:{" "}
+                        {formatPrice(parsePrice(item.price) * item.quantity)} €{" "}
                       </Typography>
                     </Box>
                     <IconButton
@@ -101,7 +110,7 @@ export default function Cart() {
                       component="span"
                       sx={{ color: "blue", fontWeight: "bold" }}
                     >
-                      {totalPrice.toFixed(2)} €
+                      {formatPrice(totalPrice)} €
                     </Box>
                   </Typography>
                   <Button
