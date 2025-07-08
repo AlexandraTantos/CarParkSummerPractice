@@ -64,7 +64,10 @@ export default function CarItem({ car }: Props) {
         </Typography>
       </CardContent>
 
-      <CardActions className="flex flex-col lg:flex-row bg-gray-50 mb-2 px-4 py-2 w-full gap-2">
+      <CardActions
+        className="flex flex-col lg:flex-row bg-white mb-2 px-4 py-2 w-full gap-2"
+        disableSpacing
+      >
         <Button
           variant="contained"
           color="primary"
