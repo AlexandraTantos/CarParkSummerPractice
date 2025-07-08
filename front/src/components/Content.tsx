@@ -8,6 +8,7 @@ import SearchInput from "./SearchInput";
 import { useState } from "react";
 import SortDropdown from "./SortDropdown";
 import parsePrice from "./shared/parsePrice";
+import { PromoBanner } from "./PromoBanner";
 
 export default function Content() {
   const { carsList, isError, isLoading } = useCarsList();
@@ -110,9 +111,11 @@ export default function Content() {
   }
   return (
     <div>
+      <PromoBanner />
       <NavBar />
+
       <div className="flex flex-col sm:flex-col md:flex-row min-h-screen">
-        <aside className="block md:sticky sm:top-0 w-full sm:w-110 p-4 bg-gray-50 border-r border-gray-200 h-auto sm:h-screen overflow-auto">
+        <aside className="hidden sm:block md:sticky sm:top-0 w-full sm:w-110 p-4 bg-gray-50 border-r border-gray-200 h-auto sm:h-screen overflow-auto">
           <FiltersPanel />
         </aside>
         <div className="w-full">

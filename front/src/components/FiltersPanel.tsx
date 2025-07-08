@@ -286,10 +286,10 @@ export default function FiltersPanel() {
           <IconButton
             size="small"
             sx={{
-              transform: openMileage ? "rotate(180deg)" : "rotate(0deg)",
+              transform: openFuelType ? "rotate(180deg)" : "rotate(0deg)",
               transition: "transform 0.3s",
             }}
-            aria-expanded={openMileage}
+            aria-expanded={openFuelType}
             aria-label="show more"
           >
             <ExpandMoreIcon />

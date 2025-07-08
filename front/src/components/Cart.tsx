@@ -27,7 +27,7 @@ export default function Cart() {
   const { cartItems, removeFromCart, clearCart } = useCart();
   const [activeStep, setActiveStep] = useState(0);
 
-  const steps = ["Shopping Cart", "Insurance", "Account", "Order Details"];
+  const steps = ["Shopping Cart", "Warranty", "Account", "Order Details"];
 
   const totalPrice = cartItems.reduce((sum, item) => {
     const parsedPrice = parsePrice(item.price);

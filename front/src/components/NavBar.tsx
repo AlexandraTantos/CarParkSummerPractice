@@ -3,6 +3,7 @@ import {
   Menu as MenuIcon,
   Person,
   ShoppingCart,
+  Tune,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -17,9 +18,12 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
+import FiltersPanel from "./FiltersPanel";
 
 export default function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
+
   const { cartItems } = useCart();
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -60,30 +64,26 @@ export default function NavBar() {
           </IconButton>
 
           <IconButton
-            onClick={() => setMobileOpen(true)}
+            onClick={() => setFilterOpen(true)}
             sx={{ display: { xs: "flex", md: "none" } }}
           >
-            <MenuIcon />
+            <Tune />
           </IconButton>
         </div>
       </Toolbar>
 
       <Drawer
         anchor="right"
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
+        open={filterOpen}
+        onClose={() => setFilterOpen(false)}
       >
-        <div className="w-64 p-4 space-y-4">
+        <div className="w-92 p-4 space-y-4">
           <div className="flex justify-end">
-            <IconButton onClick={() => setMobileOpen(false)}>
+            <IconButton onClick={() => setFilterOpen(false)}>
               <Close />
             </IconButton>
           </div>
-          <List className="space-y-2">
-            <ListItemButton>Products</ListItemButton>
-            <ListItemButton>Favorites</ListItemButton>
-            <ListItemButton>Cart</ListItemButton>
-          </List>
+          <FiltersPanel />
         </div>
       </Drawer>
     </AppBar>
