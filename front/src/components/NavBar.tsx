@@ -1,27 +1,11 @@
-import {
-  Close,
-  Menu as MenuIcon,
-  Person,
-  ShoppingCart,
-  Tune,
-} from "@mui/icons-material";
-import {
-  AppBar,
-  Badge,
-  Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Close, Person, ShoppingCart, Tune } from "@mui/icons-material";
+import { AppBar, Badge, Drawer, IconButton, Toolbar } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import FiltersPanel from "./FiltersPanel";
 
 export default function NavBar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
 
   const { cartItems } = useCart();
