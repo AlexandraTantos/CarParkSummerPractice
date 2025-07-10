@@ -74,6 +74,7 @@ export default function Content() {
 
     return true;
   });
+
   filteredCars = filteredCars.sort((a, b) => {
     const priceA = parsePrice(a.price);
     const priceB = parsePrice(b.price);
