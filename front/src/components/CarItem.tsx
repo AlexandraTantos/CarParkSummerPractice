@@ -28,7 +28,7 @@ export default function CarItem({ car }: Props) {
     <Card className="w-full shadow-lg rounded-full overflow-hidden  transition-shadow duration-300">
       <Box className="relative w-full">
         <img
-          src={`http://localhost:3019/img/${car.image}`}
+          src={`/img/${car.image}`}
           alt={`${car.manufacturer} ${car.model}`}
           className="object-cover w-full h-72 rounded-t-3xl"
         />

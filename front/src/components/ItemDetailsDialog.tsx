@@ -41,7 +41,7 @@ export default function ItemDetailsDialog({
 
       <DialogContent dividers>
         <img
-          src={`http://localhost:3019/img/${car.image}`}
+          src={`/img/${car.image}`}
           alt={`${car.manufacturer} ${car.model}`}
           className="object-cover place-self-center w-160 max-w-full h-90 p-4 rounded-3xl"
         />

@@ -9,7 +9,7 @@ export function useCarsList() {
   async function getCarList() {
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:3019/car");
+      const res = await fetch("/data.json");
       if (res.ok) {
         const data = await res.json();
         setCarsList(data);

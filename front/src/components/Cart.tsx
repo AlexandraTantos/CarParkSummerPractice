@@ -65,7 +65,7 @@ export default function Cart() {
                     className="flex flex-col sm:flex-row gap-4 p-4 mb-3 items-center"
                   >
                     <img
-                      src={`http://localhost:3019/img/${item.image}`}
+                      src={`/img/${item.image}`}
                       alt={item.model}
                       className="h-50 object-cover rounded-lg flex-grow-[2] min-w-[200px] max-w-[320px]"
                     />
