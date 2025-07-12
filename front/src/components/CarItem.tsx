@@ -57,7 +57,7 @@ export default function CarItem({ car }: Props) {
           {car.constructionYear} {car.manufacturer} {car.model}
         </Typography>
         <Typography variant="body2" color="text.secondary" className="mb-3">
-          {car.power} • {car.mileage} • {car.gearbox}
+          {car.power} • {car.mileage} • {car.gearbox} • {car.fuelType}
         </Typography>
         <Typography variant="subtitle1" className="font-bold text-indigo-600 ">
           Price: {car.price} €
