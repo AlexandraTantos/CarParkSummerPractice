@@ -9,6 +9,7 @@ import { useState } from "react";
 import SortDropdown from "./SortDropdown";
 import parsePrice from "./shared/parsePrice";
 import { PromoBanner } from "./PromoBanner";
+import { isPromoActive } from "./shared/promoActive";
 
 export default function Content() {
   const { carsList, isError, isLoading } = useCarsList();
@@ -112,7 +113,8 @@ export default function Content() {
   }
   return (
     <div>
-      <PromoBanner />
+      {isPromoActive() && <PromoBanner />}
+
       <NavBar />
 
       <div className="flex flex-col sm:flex-col md:flex-row min-h-screen">

@@ -5,19 +5,22 @@ import { FavoriteProvider } from "./contexts/FavoritesContext";
 import { FiltersProvider } from "./contexts/FiltersContext";
 import Cart from "./components/Cart";
 import { CartProvider } from "./contexts/CartContext";
+import { AccountProvider } from "./contexts/AccountContext";
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <FiltersProvider>
-          <FavoriteProvider>
-            <Routes>
-              <Route path="/" element={<Content />} />
-              <Route path="/cart" element={<Cart />} />
-            </Routes>
-          </FavoriteProvider>
-        </FiltersProvider>
-      </CartProvider>
+      <AccountProvider>
+        <CartProvider>
+          <FiltersProvider>
+            <FavoriteProvider>
+              <Routes>
+                <Route path="/" element={<Content />} />
+                <Route path="/cart" element={<Cart />} />
+              </Routes>
+            </FavoriteProvider>
+          </FiltersProvider>
+        </CartProvider>
+      </AccountProvider>
     </BrowserRouter>
   );
 }

@@ -14,6 +14,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import NavBar from "./NavBar";
 import { useCart } from "../hooks/useCart";
 import parsePrice from "./shared/parsePrice";
+import { Warranty } from "./Warranty";
+import { AccountDetails } from "./AccountDetails";
+import { OrderDetails } from "./OrderDetails";
 
 function formatPrice(num: number) {
   if (num % 1 === 0) {
@@ -37,7 +40,6 @@ export default function Cart() {
   return (
     <div>
       <NavBar />
-
       <Box sx={{ maxWidth: 900, mx: "auto", p: 3 }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
@@ -127,13 +129,9 @@ export default function Cart() {
           </>
         )}
 
-        {activeStep !== 0 && (
-          <Box sx={{ mt: 6 }}>
-            <Typography variant="h5" align="center">
-              Will be implemented
-            </Typography>
-          </Box>
-        )}
+        {activeStep === 1 && <Warranty />}
+        {activeStep === 2 && <AccountDetails />}
+        {activeStep === 3 && <OrderDetails />}
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
           <Button
             disabled={activeStep === 0}
@@ -141,12 +139,21 @@ export default function Cart() {
           >
             Back
           </Button>
-          <Button
-            disabled={activeStep === steps.length - 1}
-            onClick={() => setActiveStep((prev) => prev + 1)}
-          >
-            Next
-          </Button>
+          {activeStep === steps.length - 1 ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                alert("Order placed successfully!");
+              }}
+            >
+              Place Order
+            </Button>
+          ) : (
+            <Button onClick={() => setActiveStep((prev) => prev + 1)}>
+              Next
+            </Button>
+          )}
         </Box>
       </Box>
     </div>

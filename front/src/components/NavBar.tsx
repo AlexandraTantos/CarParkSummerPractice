@@ -43,9 +43,6 @@ export default function NavBar() {
               </Badge>
             </Link>
           </IconButton>
-          <IconButton>
-            <Person />
-          </IconButton>
 
           <IconButton
             onClick={() => setFilterOpen(true)}
