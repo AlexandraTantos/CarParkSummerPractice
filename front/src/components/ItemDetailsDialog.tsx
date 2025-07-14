@@ -27,7 +27,7 @@ export default function ItemDetailsDialog({
   return (
     <Dialog open={true} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle sx={{ mb: 0, pb: 0 }} color="primary">
-        {car.manufacturer} {car.model} ({car.constructionYear})
+        {car.manufacturer} {car.model} {car.fuelType} ({car.constructionYear})
       </DialogTitle>
 
       <Typography
