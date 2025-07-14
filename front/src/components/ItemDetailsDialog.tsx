@@ -27,7 +27,7 @@ export default function ItemDetailsDialog({
   return (
     <Dialog open={true} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle sx={{ mb: 0, pb: 0 }} color="primary">
-        {car.manufacturer} {car.model} {car.fuelType} ({car.constructionYear})
+        {car.manufacturer} {car.model} ({car.constructionYear})
       </DialogTitle>
 
       <Typography
@@ -36,7 +36,7 @@ export default function ItemDetailsDialog({
         className="px-6"
         sx={{ mt: 0.5 }}
       >
-        {car.power} • {car.mileage} • {car.gearbox}
+        {car.power} • {car.mileage} • {car.gearbox} • {car.fuelType}
       </Typography>
 
       <DialogContent dividers>
