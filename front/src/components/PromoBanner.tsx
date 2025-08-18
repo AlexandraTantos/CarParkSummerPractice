@@ -14,8 +14,8 @@ export function PromoBanner() {
   return (
     <div className="w-full shadow-sm flex bg-blue-400 flex-wrap lg:items-center lg:justify-center justify-end gap-x-6">
       <Typography className="text-lg" variant="body2" color="white">
-        NEW | Extended Warranty Offer! Buy between July 8 – August 7 and get +2
-        years free warranty.
+        NEW | Extended Warranty Offer! Buy between August 18 – October 17 and
+        get +2 years free warranty.
       </Typography>
       <Button onClick={() => navigate("/cart")}>Check out</Button>
       <IconButton onClick={() => setVisiblePromo(false)}>
